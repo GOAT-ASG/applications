@@ -177,6 +177,6 @@ def create_image():
 if len(page_default) != 0:
     pdf_bytes = create_pdf(languague)
     st.download_button('DOWNLOAD',pdf_bytes,'Link_List.pdf','application/pdf')
-    if len(chart_page) != 0:
-        image = create_image()
-        st.download_button("GRAPH",image,"Graph.pdf","application/pdf")
+if len(chart_page) != 0:
+    image = create_image()
+    st.download_button("GRAPH",image,"Graph.pdf","application/pdf")
