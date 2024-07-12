@@ -150,7 +150,7 @@ def create_pdf(languague):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_fill_color(200)
-    pdf.set_auto_page_break(auto=True, margin = 0.0)
+    'pdf.set_auto_page_break(auto=True, margin = 0.0)'
     pdf.set_font('Arial', 'B', 10)
     pdf.set_text_color(36, 99, 242)
     for i in range(len(page_default)):
