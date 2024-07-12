@@ -10,7 +10,7 @@ from fpdf import FPDF
 st.title('WIKI-FINDER')
 st.markdown('author: Adrian')
 
-url = str(st.text_input(label=('Wikipedia url: '),placeholder=('https://en.wikipedia.org/wiki/Example'))
+url = str(st.text_input(label=('Wikipedia url: '),placeholder=('https://en.wikipedia.org/wiki/Example')))
 topic = str(st.text_input(label=('Topic to search: '))).title().replace(' ','_')
 
 if not url:
