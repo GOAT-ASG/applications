@@ -132,21 +132,6 @@ else:
         st.pyplot(fig)
 
 def create_pdf(languague):
-    if len(chart_page) != 0:
-        chart_file = "chart.png"
-        plt.figure(figsize=(11, 9))
-        plt.pie(chart_page, labels=[f'TOTAL ({total})',f'TOPIC ({topic_times})'],
-                autopct='%1.1f%%',
-                colors=['brown', 'orange'],
-                explode=(0,0.1),
-                shadow={'ox': -0.04,'oy': 0.04},
-                textprops={'size': 'smaller'}, 
-                radius=0.75)
-        plt.xlabel('')
-        plt.ylabel('')
-        plt.title('TOPIC PERCENTAGE')
-        plt.savefig(chart_file)
-    
     pdf = FPDF()
     pdf.add_page()
     pdf.set_fill_color(200)
@@ -161,14 +146,37 @@ def create_pdf(languague):
         for i in range(len(languague)):
             pdf.cell(35, 6, str(languague[i]), 1, 0, 'L',True)
             pdf.multi_cell(155, 6, str(languague_page_list[i]), 1, 1, 'L')
-    else:
-        pdf.add_page()
-        pdf.image(chart_file,x=75,y=60)
 
     pdf_bytes = pdf.output(dest='S').encode('latin-1')
     
     return pdf_bytes
 
+def create_image():
+    chart_file = "chart.png"
+    plt.figure(figsize=(9, 7))
+    plt.pie(chart_page, labels=[f'TOTAL ({total})',f'TOPIC ({topic_times})'],
+                autopct='%1.1f%%',
+                colors=['brown', 'orange'],
+                explode=(0,0.1),
+                shadow={'ox': -0.04,'oy': 0.04},
+                textprops={'size': 'smaller'}, 
+                radius=0.75)
+    plt.xlabel('')
+    plt.ylabel('')
+    plt.title('TOPIC PERCENTAGE')
+    plt.savefig(chart_file)
+
+    ima = FPDF()
+    ima.add_page()
+    ima.image(chart_file,-60)
+
+    image = ima.output(dest='S').encode('latin-1')
+
+    return image
+
 if len(page_default) != 0:
     pdf_bytes = create_pdf(languague)
     st.download_button('DOWNLOAD',pdf_bytes,'Link_List.pdf','application/pdf')
+    if len(chart_page) != 0:
+        image = create_image()
+        st.download_button("GRAPH",image,"Graph.pdf","application/pdf")
