@@ -171,6 +171,7 @@ else:
         fig = plt.figure(figsize=(10, 7))
         plt.pie(chart_page, labels=[f'TOTAL ({total})',f'TOPIC ({topic_times})'],autopct='%1.1f%%',colors=['brown', 'orange'])
         st.pyplot(fig)
+        matplotlib.pyplot.savefig('Graph.png')
 
 def create_pdf(languague):
     pdf = FPDF()
@@ -187,6 +188,9 @@ def create_pdf(languague):
         for i in range(len(languague)):
             pdf.cell(35, 6, str(languague[i]), 1, 0, 'L',True)
             pdf.multi_cell(155, 6, str(languague_page_list[i]), 1, 1, 'L')
+
+    pdf.add_page()
+    pdf.image('Graph.png',x=0,y=0,w=200,h=150)
 
     pdf_bytes = pdf.output(dest='S').encode('latin-1')
     
