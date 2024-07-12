@@ -10,7 +10,7 @@ from fpdf import FPDF
 st.title('WIKI-FINDER')
 st.markdown('author: Adrian')
 
-url = str(st.text_input(label=('Wikipedia url: ')))
+url = str(st.text_input(label=('Wikipedia url: '),placeholder=('https://en.wikipedia.org/wiki/Example')))
 topic = str(st.text_input(label=('Topic to search: '))).title().replace(' ','_')
 
 if not url:
@@ -77,19 +77,37 @@ data_default = {
     'Page':page_default,
     }
 
-try:
-    if len(page_default) != 0:
-        pd = pandas.DataFrame(data_default)
-        st.write(pd)
-except:
-    pass
-
 if count == 0:
     st.text('\nNo links found\n')
 elif len(variation) > 0 and topic == '':
-    st.text('\nDifferent languagues\n')
+    check = st.checkbox("Full Table", key="disabled")
+else:
+    check = st.checkbox("Full Table", key="disabled")
+    
 
 chart_page = []
+
+if not check:
+    if check == False and topic == '':
+        st.text('\nAll links                                  Different languagues\n')
+    col1, col2 = st.columns(2)
+
+else:
+    try:
+        if len(page_default) != 0:
+            pd = pandas.DataFrame(data_default)
+            st.write(pd.to_html(render_links=True, escape=False),unsafe_allow_html=True)
+    except:
+        pass
+
+if not check:
+    with col1:
+        try:
+            if len(page_default) != 0:
+                pd = pandas.DataFrame(data_default)
+                st.write(pd)
+        except:
+            pass
 
 if len(variation) > 0 and topic == '':
     languague, languague_page_list = [],[]
@@ -122,8 +140,16 @@ if len(variation) > 0 and topic == '':
     'Page':languague_page_list,
     }
 
-    pd = pandas.DataFrame(data)
-    st.write(pd)
+    if not check:
+        with col2:
+            pd = pandas.DataFrame(data)
+            st.write(pd)
+    else:
+        pd = pandas.DataFrame(data)
+        st.write(pd.to_html(render_links=True, escape=False),unsafe_allow_html=True)
+    
+    
+
 else:
     if len(page_default) != 0:
         chart_page = [total,topic_times]
