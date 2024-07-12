@@ -134,7 +134,7 @@ else:
 def create_pdf(languague):
     if len(chart_page) != 0:
         chart_file = "chart.png"
-        plt.figure(figsize=(10, 8))
+        plt.figure(figsize=(11, 9))
         plt.pie(chart_page, labels=[f'TOTAL ({total})',f'TOPIC ({topic_times})'],
                 autopct='%1.1f%%',
                 colors=['brown', 'orange'],
