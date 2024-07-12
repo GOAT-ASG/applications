@@ -163,7 +163,7 @@ def create_pdf(languague):
             pdf.cell(35, 6, str(languague[i]), 1, 0, 'L',True)
             pdf.multi_cell(155, 6, str(languague_page_list[i]), 1, 1, 'L')
     else:
-        pdf.image(chart_file,-60)
+        pdf.image(chart_file,-90)
 
     pdf_bytes = pdf.output(dest='S').encode('latin-1')
     
