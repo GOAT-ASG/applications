@@ -168,7 +168,7 @@ def create_image():
 
     ima = FPDF()
     ima.add_page()
-    ima.image(chart_file,-60)
+    ima.image(chart_file,-50)
 
     image = ima.output(dest='S').encode('latin-1')
 
