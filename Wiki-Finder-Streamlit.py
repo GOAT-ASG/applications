@@ -26,7 +26,7 @@ if not url_placeholder:
 for j in lan_soup.find_all('tr'):
     try:
         if j.find_all('td')[0].string == languague_input:
-            url = f'https://{j.find_all('td')[1].string}.wikipedia.org/wiki/{url_placeholder}'
+            url = f"https://{j.find_all('td')[1].string}.wikipedia.org/wiki/{url_placeholder}"
     except:
         continue
 
