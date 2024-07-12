@@ -24,7 +24,7 @@ lan_soup = BeautifulSoup(lan_page.content, 'html.parser')
 try:
     page = requests.get(url)
 except:
-    st.error('NOT A WIKIPEDIA LINK')
+    st.error('NOT A FULL WIKIPEDIA LINK')
     st.stop()
 
 soup = BeautifulSoup(page.content, 'html.parser')
@@ -79,6 +79,7 @@ data_default = {
 
 if count == 0:
     st.text('\nNo links found\n')
+    check = None
 elif len(variation) > 0 and topic == '':
     check = st.checkbox("Full Table", key="disabled")
 else:
@@ -101,9 +102,9 @@ else:
 
 if not check:
     with col1:
-        st.text('\nAll links')
         try:
             if len(page_default) != 0:
+                st.text('\nAll links')
                 pd = pandas.DataFrame(data_default)
                 st.write(pd)
         except:
