@@ -150,7 +150,7 @@ def create_pdf(languague):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_fill_color(200)
-    'pdf.set_auto_page_break(auto=True, margin = 0.0)'
+    pdf.set_auto_page_break(auto=True, margin = 0.0)
     pdf.set_font('Arial', 'B', 10)
     pdf.set_text_color(36, 99, 242)
     for i in range(len(page_default)):
@@ -163,7 +163,7 @@ def create_pdf(languague):
             pdf.multi_cell(155, 6, str(languague_page_list[i]), 1, 1, 'L')
     else:
         pdf.add_page()
-        pdf.image(chart_file,x=-75,y=60)
+        pdf.image(chart_file,x=75,y=60)
 
     pdf_bytes = pdf.output(dest='S').encode('latin-1')
     
