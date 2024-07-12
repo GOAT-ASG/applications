@@ -1,3 +1,4 @@
+import matplotlib
 import matplotlib.backends
 import streamlit as st
 import pandas
