@@ -1,4 +1,3 @@
-import matplotlib
 import matplotlib.backends
 import streamlit as st
 import pandas
@@ -11,7 +10,7 @@ from fpdf import FPDF
 st.title('WIKI-FINDER')
 st.markdown('author: Adrian')
 
-url = str(st.text_input(label=('Wikipedia url: '),placeholder=('https://en.wikipedia.org/wiki/Example')))
+url = str(st.text_input(label=('Wikipedia url: ')))
 topic = str(st.text_input(label=('Topic to search: '))).title().replace(' ','_')
 
 if not url:
@@ -135,7 +134,7 @@ else:
 def create_pdf(languague):
     if len(chart_page) != 0:
         chart_file = "chart.png"
-        plt.figure(figsize=(9, 6))
+        plt.figure(figsize=(10, 8))
         plt.pie(chart_page, labels=[f'TOTAL ({total})',f'TOPIC ({topic_times})'],
                 autopct='%1.1f%%',
                 colors=['brown', 'orange'],
@@ -163,7 +162,8 @@ def create_pdf(languague):
             pdf.cell(35, 6, str(languague[i]), 1, 0, 'L',True)
             pdf.multi_cell(155, 6, str(languague_page_list[i]), 1, 1, 'L')
     else:
-        pdf.image(chart_file,-90)
+        pdf.add_page()
+        pdf.image(chart_file,x=-75,y=60)
 
     pdf_bytes = pdf.output(dest='S').encode('latin-1')
     
