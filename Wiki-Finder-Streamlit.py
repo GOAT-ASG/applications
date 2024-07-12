@@ -10,17 +10,31 @@ from fpdf import FPDF
 st.title('WIKI-FINDER')
 st.markdown('author: Adrian')
 
-url = str(st.text_input(label=('Wikipedia url: '),placeholder=('https://en.wikipedia.org/wiki/Example')))
-topic = str(st.text_input(label=('Topic to search: '))).title().replace(' ','_')
-
-if not url:
-    st.stop()
-
 lurl = 'https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'
 
 lan_page = requests.get(lurl)
 lan_soup = BeautifulSoup(lan_page.content, 'html.parser')
 
+url_placeholder = str(st.text_input(label=('Wikipedia: '),placeholder=('Example: Queijo'))).strip().title()
+
+languague_input = str(st.text_input(label=('Languague: '),placeholder=('Default: Portuguese'))).strip().title()
+topic = str(st.text_input(label=('Topic to search: '))).title().replace(' ','_')
+
+if not url_placeholder:
+    st.stop()
+
+for j in lan_soup.find_all('tr'):
+    try:
+        if j.find_all('td')[0].string == languague_input:
+            url = f'https://{j.find_all('td')[1].string}.wikipedia.org/wiki/{url_placeholder}'
+    except:
+        continue
+
+try:
+    page = requests.get(url)
+except:
+    url = f'https://pt.wikipedia.org/wiki/{url_placeholder}'
+    
 try:
     page = requests.get(url)
 except:
