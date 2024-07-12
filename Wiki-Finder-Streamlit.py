@@ -18,7 +18,7 @@ lan_soup = BeautifulSoup(lan_page.content, 'html.parser')
 url_placeholder = str(st.text_input(label=('Wikipedia: '),placeholder=('Example: Queijo'))).strip().title()
 
 languague_input = str(st.text_input(label=('Languague: '),placeholder=('Default: Portuguese'))).strip().title()
-topic = str(st.text_input(label=('Topic to search: '))).title().replace(' ','_')
+topic = str(st.text_input(label=('Topic to search: '),placeholder=('Example: Leite'))).title().replace(' ','_')
 
 if not url_placeholder:
     st.stop()
