@@ -88,11 +88,10 @@ else:
 chart_page = []
 
 if not check:
-    if check == False and topic == '':
-        st.text('\nAll links                                  Different languagues\n')
     col1, col2 = st.columns(2)
 
 else:
+    st.text('\nAll links')
     try:
         if len(page_default) != 0:
             pd = pandas.DataFrame(data_default)
@@ -102,6 +101,7 @@ else:
 
 if not check:
     with col1:
+        st.text('\nAll links')
         try:
             if len(page_default) != 0:
                 pd = pandas.DataFrame(data_default)
@@ -142,13 +142,13 @@ if len(variation) > 0 and topic == '':
 
     if not check:
         with col2:
+            st.text('Different languagues\n')
             pd = pandas.DataFrame(data)
             st.write(pd)
     else:
+        st.text('Different languagues\n')
         pd = pandas.DataFrame(data)
         st.write(pd.to_html(render_links=True, escape=False),unsafe_allow_html=True)
-    
-    
 
 else:
     if len(page_default) != 0:
