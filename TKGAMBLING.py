@@ -9,7 +9,6 @@ app = tk.CTk()
 app.geometry("350x350")
 app.resizable(False,False)
 app.title("NICKEL")
-app.wm_iconbitmap('favicon.ico')
 
 money_var = tk.IntVar(value=money)
 
