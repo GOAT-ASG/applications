@@ -14,7 +14,7 @@ def start():
     app.geometry(f"350x350+{(app.winfo_screenwidth() - 350)//2}+{(app.winfo_screenheight() - 350)//2}")
     app.resizable(False, False)
     app.title("NICKEL")
-    app.wm_iconbitmap('Gambling Machine_favicon.ico')
+    # Unused: app.wm_iconbitmap('Gambling Machine_favicon.ico')
 
     # Create frames for layout
     chart = tk.CTkFrame(app, width=335, height=180, fg_color='brown')
