@@ -33,12 +33,13 @@ def start():
         """
         Simulate spinning the slot machine by randomly selecting a symbol.
         """
-        luck = random.randrange(0, 10)
+        luck = random.randrange(0,10)
         if luck > 7:
             luck = 7
         for i in range(7):
-            if luck == i:
-                symbol = list(ves.keys())[i]
+            match luck:
+                case i:
+                    symbol = list(ves.keys())[i]
         return symbol
 
     def rewards(visual):
@@ -101,8 +102,8 @@ def start():
             mult = 3
 
         if trma.get():
-            button.place(relx=0.85, rely=(0.075), anchor='center')
-            button_all.place(relx=0.85, rely=(0.175), anchor='center')
+            button.place(relx=0.5,rely=(0.13),anchor='center')
+            button_all.place(relx=0.5,rely=(0.34),anchor='center')
             tm()
 
         if allmode == 'no':
@@ -160,8 +161,12 @@ def start():
         tk.CTkLabel(wallet, textvariable=money_var, height=30, font=("Arial", 14, 'bold'), text_color='black').place(relx=0.375, rely=0.5, anchor='w')
         tk.CTkLabel(chart, text='FUN FACTS:').place(relx=0.65, rely=(0.25), anchor='center')
         tk.CTkLabel(chart, text='''-99% of gamblers quit before the big win
-    -You can only lose 100% , but you can win more than 1000%
-    -“The better the gambler, the better the man.” - Jesus Christ''', justify='left'
+                    
+-You can only lose 100% , 
+but you can win more than 1000%
+                    
+-“The better the gambler, 
+the better the man.” - Jesus Christ''', justify='left'
                     ).place(relx=0.64, rely=(0.35), anchor='n')
         tk.CTkLabel(chart, text=f'4x * 3     5x * 7' + ' '*18 + 'MIN = $100', text_color='yellow'
                     ).place(relx=0.38, rely=(0.1), anchor='w')
