@@ -13,7 +13,7 @@ def start():
     app.resizable(False,False)
     app.title("NICKEL")
     app.wm_frame
-    app.wm_iconbitmap('Gambling Machine\_favicon.ico')
+    app.wm_iconbitmap('Gambling_machine\_favicon.ico')
     chart = tk.CTkFrame(app,width=335,height=180,fg_color='brown')
     chart.place(relx=0.5, rely=0.72, anchor='center')
     sidepanel = tk.CTkFrame(app,width=85,height=150,fg_color='brown')

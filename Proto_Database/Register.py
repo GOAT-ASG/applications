@@ -1,6 +1,6 @@
 import pandas as pd
 
-data = open('Misc projects/base.txt').read()
+data = open('Proto_Database/base.txt').read()
 data = data.replace('{','').replace('}','')
 
 def retrieve(data):
@@ -43,7 +43,7 @@ while True:
 
         stuff[key] = val
 
-        data = open('Misc projects/base.txt','w')
+        data = open('Proto_Database/base.txt','w')
         data.write(str(stuff))
         data.close()
 
@@ -59,7 +59,7 @@ while True:
         used.remove(stuff[dell])
         stuff.pop(dell)
 
-        data = open('Misc projects/base.txt','w')
+        data = open('Proto_Database/base.txt','w')
         data.write(str(stuff))
         data.close()
 
